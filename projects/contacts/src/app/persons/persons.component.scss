@@ -1,0 +1,29 @@
+.content {
+  padding: 32px;
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  >div {
+    min-width: 100%;
+
+    .tabParent {
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 500px;
+
+      .mat-table-sticky {
+        background-color: #e0e0e0;
+      }
+    }
+
+    .mat-column-select {
+      overflow: initial;
+    }
+  }
+}

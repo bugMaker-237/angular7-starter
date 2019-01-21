@@ -1,0 +1,190 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "contacts": {
+      "root": "projects/contacts/",
+      "sourceRoot": "projects/contacts/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/contacts",
+            "index": "projects/contacts/src/index.html",
+            "main": "projects/contacts/src/main.ts",
+            "polyfills": "projects/contacts/src/polyfills.ts",
+            "tsConfig": "projects/contacts/tsconfig.app.json",
+            "assets": [
+              "projects/contacts/src/favicon.ico",
+              "projects/contacts/src/assets",
+              {
+                "glob": "**/*",
+                "input": "projects/assets",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "projects/contacts/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [{
+                "replace": "environments/environment.ts",
+                "with": "environments/environment.prod.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }]
+            },
+            "hmr": {
+              "fileReplacements": [{
+                "replace": "environments/environment.ts",
+                "with": "environments/environment.hmr.ts"
+              }]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "contacts:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "contacts:build:production"
+            },
+            "hmr": {
+              "hmr": true,
+              "browserTarget": "contacts:build:hmr"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "contacts:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/contacts/src/test.ts",
+            "polyfills": "projects/contacts/src/polyfills.ts",
+            "tsConfig": "projects/contacts/tsconfig.spec.json",
+            "karmaConfig": "projects/contacts/karma.conf.js",
+            "styles": [
+              "projects/contacts/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/contacts/src/favicon.ico",
+              "projects/contacts/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/contacts/tsconfig.app.json",
+              "projects/contacts/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "contacts-e2e": {
+      "root": "e2e/contacts-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/contacts-e2e/protractor.conf.js",
+            "devServerTarget": "contacts:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "contacts:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/contacts-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "genesis": {
+      "root": "projects/genesis",
+      "sourceRoot": "projects/genesis/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/genesis/tsconfig.lib.json",
+            "project": "projects/genesis/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/genesis/src/test.ts",
+            "tsConfig": "projects/genesis/tsconfig.spec.json",
+            "karmaConfig": "projects/genesis/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/genesis/tsconfig.lib.json",
+              "projects/genesis/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "contacts"
+}

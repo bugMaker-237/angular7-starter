@@ -1,0 +1,67 @@
+<form
+  class="mat-elevation-z8"
+  (ngSubmit)="login()"
+  name="loginForm"
+  [formGroup]="loginForm"
+  fxLayout="column"
+>
+  <img
+    mat-card-image
+    src="/assets/login.jpg"
+    alt="Guard"
+  >
+  <mat-progress-bar
+    class="example-margin"
+    color="primary"
+    mode="indeterminate"
+    [style.display]="processing?'inherit':'none'"
+  >
+  </mat-progress-bar>
+
+  <div
+    fxLayout="column"
+    class="content  mat-app-background"
+  >
+    <mat-form-field
+      appearance="fill"
+      floatLabel="never"
+    >
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        formControlName="username"
+        required
+        name="username"
+        placeholder=""
+      >
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      floatLabel="never"
+    >
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        name="password"
+        formControlName="password"
+        required
+        placeholder=""
+      >
+      <mat-icon
+        matSuffix
+        (click)="hide = !hide"
+      >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="processing"
+    >LOGIN</button>
+
+  </div>
+
+</form>

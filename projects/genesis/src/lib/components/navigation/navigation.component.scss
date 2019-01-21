@@ -1,0 +1,29 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 260px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+  height: 180px;
+  background: linear-gradient(0deg, rgba(69, 79, 168, 0.6) 68%, rgba(69, 79, 168, 0.6) 68%), url(/assets/back-nav.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+mat-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.user-info {
+  color: whitesmoke;
+}
